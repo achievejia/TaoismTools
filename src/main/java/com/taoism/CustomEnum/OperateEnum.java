@@ -87,7 +87,12 @@ public enum OperateEnum {
     /**
      * 流程处理
      */
-    WORKFLOW("流程处理", 15);
+    WORKFLOW("流程处理", 15),
+
+    /**
+     * 检查处理
+     */
+    CHECKED("检查处理", 16);
 
     private String name;
     private int index;

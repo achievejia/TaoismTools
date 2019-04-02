@@ -39,6 +39,11 @@ public class CustomResult {
     private String Message;
 
     /**
+     * 堆栈异常错误消息
+     */
+    private String StackMessage;
+
+    /**
      * 数据大小
      */
     private long Count;
@@ -64,6 +69,16 @@ public class CustomResult {
         this.Message = message;
         this.Count = count;
         this.TotalAmount = totalAmount;
+    }
+
+    public CustomResult(boolean success, Integer code, Object data, String message, long count, BigDecimal totalAmount, String stackMessage) {
+        this.Success = success;
+        this.Code = code;
+        this.Data = data;
+        this.Message = message;
+        this.Count = count;
+        this.TotalAmount = totalAmount;
+        this.StackMessage = stackMessage;
     }
 
     /**
@@ -212,6 +227,27 @@ public class CustomResult {
         return new CustomResult(false, code, null, message, 0, null);
     }
 
+    /**
+     * 失败
+     * @param message
+     * @param stackMessage
+     * @return
+     */
+    public static CustomResult Fail(String message, String stackMessage) {
+        return new CustomResult(false, ResultEnum.Fail.getIndex(), null, message, 0, null, stackMessage);
+    }
+
+    /**
+     * 失败
+     * @param code
+     * @param message
+     * @param stackMessage
+     * @return
+     */
+    public static CustomResult Fail(Integer code, String message, String stackMessage) {
+        return new CustomResult(false, code, null, message, 0, null, stackMessage);
+    }
+
     public String getResultId() {
         return ResultId;
     }
@@ -266,5 +302,13 @@ public class CustomResult {
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.TotalAmount = totalAmount;
+    }
+
+    public String getStackMessage() {
+        return StackMessage;
+    }
+
+    public void setStackMessage(String stackMessage) {
+        StackMessage = stackMessage;
     }
 }

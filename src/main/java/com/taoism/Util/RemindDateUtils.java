@@ -193,4 +193,64 @@ public class RemindDateUtils {
         }
         return now;
     }
+
+    /**
+     * 前一天开始时间
+     * @return
+     */
+    public Date getBeforeStartTime() {
+        Calendar c = Calendar.getInstance();
+        try {
+            c.add(Calendar.DATE, -1);
+            c.setTime(longSdf.parse(shortSdf.format(c.getTime()) + " 00:00:00"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c.getTime();
+    }
+
+    /**
+     * 前一天结束时间
+     * @return
+     */
+    public Date getBeforeEndTime() {
+        Calendar c = Calendar.getInstance();
+        try {
+            c.add(Calendar.DATE, -1);
+            c.setTime(longSdf.parse(shortSdf.format(c.getTime()) + " 23:59:59"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c.getTime();
+    }
+
+    /**
+     * 获取前XX天开始时间
+     * @return
+     */
+    public Date getBeforeStartTime(int amount) {
+        Calendar c = Calendar.getInstance();
+        try {
+            c.add(Calendar.DATE, amount);
+            c.setTime(longSdf.parse(shortSdf.format(c.getTime()) + " 00:00:00"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c.getTime();
+    }
+
+    /**
+     * 获取前XX天结束时间
+     * @return
+     */
+    public Date getBeforeEndTime(int amount) {
+        Calendar c = Calendar.getInstance();
+        try {
+            c.add(Calendar.DATE, amount);
+            c.setTime(longSdf.parse(shortSdf.format(c.getTime()) + " 23:59:59"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c.getTime();
+    }
 }
