@@ -68,6 +68,7 @@ public class CSVUtil {
         for (Object data : row) {
             StringBuffer sb = new StringBuffer();
             String rowStr = sb.append("\"").append(data).append("\",").toString();
+            rowStr = rowStr.replaceAll(" ", "");
             csvWriter.write(rowStr);
         }
         csvWriter.newLine();
