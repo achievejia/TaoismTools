@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -258,5 +260,42 @@ public class CustomUtil {
      */
     public static String sortTimeToLongTime(String tmp) {
         return tmp.substring(0, 4) + "-" + tmp.substring(4, 6) + "-" + tmp.substring(6, 8);
+    }
+
+    /**
+     * String 字符串转 List集合
+     * @param tmp
+     * @param splitStr 切割字符串
+     * @return
+     */
+    public static List<String> stringToList(String tmp, String splitStr) {
+        List<String> listObj = new ArrayList<>();
+        String[] ids = tmp.split(splitStr);
+        for (Integer i = 0; i < ids.length; i++) {
+            if (!isEmpty(ids[0])) {
+                listObj.add(ids[i]);
+            }
+        }
+        return listObj;
+    }
+
+    /**
+     * 是否为空字符串(包含"null")
+     * @param str
+     * @return
+     */
+    public static boolean isEmpty(Object str) {
+        return str == null || "".equals(str) || "null".equals(str);
+    }
+
+    /**
+     * decimal的值比较
+     * @param comparativeValue              比较的值，比如数据库取中的值
+     * @param beginComparativeValue         被比较的值, 如0、1、2之类的
+     * @return
+     */
+    public static Integer decimalCompare(BigDecimal comparativeValue, BigDecimal beginComparativeValue) {
+        Integer result = comparativeValue.compareTo(beginComparativeValue);
+        return result;
     }
 }
